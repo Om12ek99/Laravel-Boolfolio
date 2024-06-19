@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema di Gestione Portfolio con Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Obiettivo
 
-## About Laravel
+L'obiettivo di oggi è creare il nostro sistema di gestione del portfolio utilizzando Laravel.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Modus Operandi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Preparazione:
+- Copiato il template da GitHub.
+- Installato le dipendenze.
+- Sostituito la cartella `views` con quella fornita da Olga.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Milestone 1:
 
-## Learning Laravel
+#### Migration `create_project_table`
+- Creata la migration `create_project_table`.
+- Definite le colonne: `title`, `content`, `slug`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### Seeder `ProjectTableSeeder`
+- Creato `ProjectTableSeeder`.
+- Utilizzato `Str` per generare gli slug.
+- Utilizzato Faker:
+  - `title` generato con `sentence` con un massimo di 3 parole.
+  - `content` generato con `text` con un massimo di 500 caratteri.
+  - `slug` generato con `Str::slug` basato sul titolo.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### Modello `Project`
+- Creato il modello `Project` corrispondente alla migration.
+- Aggiunto `protected $table` nel modello a causa di problemi con il Seeder e `db:seed`.
+- Aggiunto `fillable` per consentire l'assegnamento di massa.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Milestone 2:
 
-## Laravel Sponsors
+#### Controller delle Risorse `ProjectController`
+- Creato `ProjectController` come controller delle risorse.
+- Aggiunte le rotte per il controller all'interno del Middleware.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+#### Risolto Problema della Rotta del Dashboard
+- Risolto problema di routing per `dashboard` in `Admin.blade.php` spostando il file in `views/Admin`.
 
-### Premium Partners
+#### Funzioni Implementate in `ProjectController`
+- Implementate le funzioni `index`, `create` e `store` con le rispettive validazioni.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+#### Creazione delle Viste e delle Rotte
+- Creati `index.blade.php` e `create.blade.php`.
+- Aggiunta la rotta per `index` nel menu `Admin` nella barra laterale sinistra.
 
-## Contributing
+#### Aggiunto Form in `create.blade.php`
+- Aggiunto il form per la creazione del progetto in `create.blade.php`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Visualizzazione dei Progetti in `index.blade.php`
+- Aggiunta la funzionalità per visualizzare i progetti in `index.blade.php`.
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
