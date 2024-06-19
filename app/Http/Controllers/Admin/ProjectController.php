@@ -30,6 +30,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+
         $newProject = new Project();
         $newProject->title = $request->title;
         $newProject->content = $request->content;
