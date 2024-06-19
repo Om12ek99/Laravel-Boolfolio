@@ -6,7 +6,7 @@
     <a href="{{ route('admin.project.create') }}" class="btn btn-primary mb-3">Crea nuovo progetto</a>
 
     <ul>
-        @foreach ($projects as $project)
+        @foreach ($newProject as $project)
             <li>{{ $project->title }}</li>
         @endforeach
     </ul>
