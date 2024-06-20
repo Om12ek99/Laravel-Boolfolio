@@ -57,13 +57,13 @@ class ProjectController extends Controller
 
     public function show(string $slug){
         // selezioniamo il primo 
-        $project = Project::where('slug', $slug)->first();
+        $newProject = Project::where('slug', $slug)->first();
 
         // implemento il ciclo che aborta in caso non ci sia un post
-        if(!$project){
+        if(!$newProject){
             abort(404);
     }
-    return view('admin.project.show', compact('id'));
+    return view('admin.project.show', compact('newProject'));
 }
     /**
      * Show the form for editing the specified resource.
