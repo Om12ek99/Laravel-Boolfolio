@@ -48,11 +48,23 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
 
+    //  funzione normale
+    // public function show(Project $project)
+    // {
+    //     return view('admin.project.show', compact('project'));
+    // }
+
+    public function show(string $slug){
+        // selezioniamo il primo 
+        $project = Project::where('slug', $slug)->first();
+
+        // implemento il ciclo che aborta in caso non ci sia un post
+        if(!$project){
+            abort(404);
+    }
+    return view('admin.project.show', compact('id'));
+}
     /**
      * Show the form for editing the specified resource.
      */
