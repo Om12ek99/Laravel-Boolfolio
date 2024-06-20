@@ -52,5 +52,15 @@ L'obiettivo di oggi è creare il nostro sistema di gestione del portfolio utiliz
 #### Visualizzazione dei Progetti in `index.blade.php`
 - Aggiunta la funzionalità per visualizzare i progetti in `index.blade.php`.
 
+### Milestone 3:
 
+#### Completamento del CRUD
+- implementate le funzioni `show` e `delete` senza softdeletes
+
+#### modifica della rotta per implementare slug
+- nel file `web.php` aggiunto parametro `slug` come metodo di richiamo valore
+
+#### creazione pulsanti ed assegnazione rotte alle funzioni create
+- Aggiunte le funzioni `mostra` ed `elimina` nella pagina `index` per ogni elemento con riferimento allo `slug`
+  
 
