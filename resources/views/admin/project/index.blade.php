@@ -5,6 +5,12 @@
 
     <a href="{{ route('admin.project.create') }}" class="btn btn-primary mb-3">Crea nuovo progetto</a>
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>    
+    @endif
+
     <table class="table">
         <thead>
             <tr>
@@ -23,8 +29,8 @@
                     <td>
 
                     <!-- chiedi ai tutor perche mi prende newProject maiuscolo -->
-                        <a href="{{ route('admin.project.show',['NewProject'=>$curProject->slug])}}" class="btn btn-info">Mostra</a>
-                        <form action="{{ route('admin.project.destroy', $curProject->id) }}" method="POST" style="display:inline-block;">
+                        <a href="{{ route('admin.project.show',['newProject'=>$curProject->slug])}}" class="btn btn-info">Mostra</a>
+                        <form action="{{ route('admin.project.destroy', ['newProject'=>$curProject->slug]) }}" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Elimina</button>

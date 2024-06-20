@@ -28,7 +28,7 @@ Route::middleware('auth')
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         // sostituisce slug al id
-        Route::resource('project',ProjectController::class)->parameters(['project'=>'NewProject:slug']);
+        Route::resource('project',ProjectController::class)->parameters(['project'=>'newProject:slug']);
 
     });
 
