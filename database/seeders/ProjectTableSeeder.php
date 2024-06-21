@@ -7,7 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
-//serve per poter usare slug
+//tratto che serve perpoter usare slug
 use Illuminate\Support\Str;
 
 class ProjectTableSeeder extends Seeder
@@ -19,12 +19,15 @@ class ProjectTableSeeder extends Seeder
     {
 
         for ($i = 0; $i < 10; $i++) {
-        $newProject = new Project();
-        $newProject->title = $faker->sentence(3);
-        $newProject->content = $faker->text(500);
-        //mette il trattino tra una parola e l'altra prendendo titolo come riferimento
-        $newProject->slug = Str::slug($newProject->title);
-        $newProject->save();
+
+            //creazione nuova istanza newProject
+            $newProject = new Project();
+            $newProject->title = $faker->sentence(3);
+            $newProject->content = $faker->text(500);
+            //mette il trattino tra una parola e l'altra prendendo titolo come riferimento
+            // //Nell'assegnare lo slug devospecificare Str::slug e tra parentesi indicarli l'attributo su cui si deve basare
+            $newProject->slug = Str::slug($newProject->title);
+            $newProject->save();
         }
     }
 }

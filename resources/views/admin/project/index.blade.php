@@ -28,7 +28,7 @@
                     <td>{{ $curProject->slug }}</td>
                     <td>
 
-                    <!-- chiedi ai tutor perche mi prende newProject maiuscolo -->
+                    <
                         <a href="{{ route('admin.project.show',['newProject'=>$curProject->slug])}}" class="btn btn-info">Mostra</a>
                         <form action="{{ route('admin.project.destroy', ['newProject'=>$curProject->slug]) }}" method="POST" style="display:inline-block;">
                             @csrf

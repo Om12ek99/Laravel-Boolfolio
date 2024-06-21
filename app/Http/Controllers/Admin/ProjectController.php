@@ -31,11 +31,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        //validazione dei valori della tabella richiesti
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
         ]);
 
+        // da non confondere con il newProject nel seeder!!!
         $newProject = new Project();
         $newProject->title = $request->title;
         $newProject->content = $request->content;
@@ -55,16 +57,22 @@ class ProjectController extends Controller
     //     return view('admin.project.show', compact('project'));
     // }
 
-    public function show(string $slug){
-        // selezioniamo il primo 
+    public function show(string $slug)
+    {
+        // query per recuperare il progetto
+        // Project::where('slug', $slug) indica che si sta cercando un 
+        // record nella tabella dei progetti (Project) dove il campo slug 
+        // corrisponde al valore fornito in $slug.
+        // da non confondere con il newProject nel seeder!!!
         $newProject = Project::where('slug', $slug)->first();
 
         // implemento il ciclo che aborta in caso non ci sia un post
-        if(!$newProject){
+        if (!$newProject) {
             abort(404);
+        }
+
+        return view('admin.project.show', compact('newProject'));
     }
-    return view('admin.project.show', compact('newProject'));
-}
     /**
      * Show the form for editing the specified resource.
      */
@@ -86,8 +94,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $newProject)
     {
-       $newProject->delete();
-       return redirect()->route('admin.project.index')->with('success','project '.$newProject->title.' è stato eliminato con successo');
+        $newProject->delete();
 
+        //->with('identificativo'.'stringa'. attributo. 'stringa')
+        return redirect()->route('admin.project.index')->with('success', 'project ' . $newProject->title . ' è stato eliminato con successo');
     }
 }
